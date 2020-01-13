@@ -1,3 +1,4 @@
+import { API_URL } from './../constants';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -9,7 +10,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl: string = 'http://localhost:3000/users';
+  private baseUrl: string = `${API_URL}/users`;
 
   connectedUser: User;
 
@@ -19,6 +20,7 @@ export class UserService {
   ) {
     if (this.authService.getToken()) {
       this.loadUser().subscribe(result => {
+        this.connectedUser = result;
         console.log("Connected user", this.connectedUser);
       });
     }

@@ -1,3 +1,5 @@
+import { UserService } from './../../shared/user.service';
+import { AuthService } from './../../shared/auth.service';
 import { PostService } from 'src/app/shared/post.service';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/shared/post';
@@ -11,7 +13,11 @@ export class PostListPageComponent implements OnInit {
 
   posts: Post[] = [];
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService, 
+    private authService: AuthService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.postService.getPosts().subscribe(response => {
@@ -19,4 +25,7 @@ export class PostListPageComponent implements OnInit {
     })
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

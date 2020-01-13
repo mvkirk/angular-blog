@@ -1,3 +1,4 @@
+import { API_URL } from './../constants';
 import { Post } from './post';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private baseUrl: string = 'http://localhost:3000/posts';
+  private baseUrl: string = `${API_URL}/posts`;
 
   constructor(private http: HttpClient) { }
 

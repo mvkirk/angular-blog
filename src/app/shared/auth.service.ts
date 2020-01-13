@@ -1,16 +1,18 @@
+import { API_URL } from './../constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl: string = 'http://localhost:3000/auth';
+  private baseUrl: string = `${API_URL}/auth`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /**
    * Make the api call for the authentification.
@@ -37,6 +39,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
+    this.router.navigateByUrl('/login');
   }
 
   /**
