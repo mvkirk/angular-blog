@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private baseUrl: string = 'http://localhost:8000/api/posts';
+  private baseUrl: string = 'http://localhost:3000/posts';
 
   constructor(private http: HttpClient) { }
 
